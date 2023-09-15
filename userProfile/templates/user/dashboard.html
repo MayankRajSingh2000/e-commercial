@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}weforuh | Shop {% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="container py-5">
+    <section class="py-5">
+        <div class="row">
+
+            <!-- Profile-->
+            <div class="col-lg-3 order-1 order-lg-1">
+                <!-- User Profile picture in case of unique-->
+                <header class="text-center">
+                    <p><img src='{{request.user.profile.image.url}}' height="150" width="180" alt="Image placeholder"
+                            class="img-thumbnail"></p>
+                    <!--End of User Profile picture-->
+
+                    <h4 class="sub-heading"><strong>{{name}}</strong></h4>
+                    {% for group_name in group %}
+                    <!-- <h4 class="sub-heading">({{group_name}})</h4> -->
+                    <p><a href="#" class="btn btn-primary btn-outline-primary btn-sm">{{group_name}}</a></p>
+                    {% endfor %}
+                    <!-- For user profile-->
+                </header>
+                <hr/>
+            </div>
+
+            <div class="col-lg-9 order-2 order-lg-2 mb-5 mb-lg-0">
+                <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">
+                    <a class="reset-anchor" href="#">Update User Details</a></strong>
+                </div>
+                <!-- Dashboard -->
+                <div class="card-body">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{u_form.as_p}}
+                        {{p_form.as_p}}
+                        <input type="submit" value="Update Profile" class="btn btn-danger btn-sm">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- End of dashboard -->
+        </div>
+
+    </section>
+</div>
+
+{% endblock %}

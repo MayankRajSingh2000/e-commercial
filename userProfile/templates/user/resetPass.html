@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Boutique | Ecommerce bootstrap template{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="card mb-4" id="forms">
+          <div class="card-header">Change Password</div>
+          <div class="card-body">
+         <form action="{% url 'changepass'%}" method="post">
+              {% csrf_token %}
+              {% if form.non_field_errors %}
+                {% for error in form.non_field_eroros %}
+                    <p>{{error}}</p>
+                {% endfor %}
+              {% endif %}
+
+              {% for fm in form %}
+                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br/><br/>
+                {% endfor %}
+                  <!-- <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="username">Enter Your Username</label>
+                      <input type="text" id="username" name="username" class="form-control ">
+                    </div>
+                  </div>
+				  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="newpass1">Enter Your New Password</label>
+                      <input type="text" id="newpass1" name="newpass1" class="form-control ">
+                    </div>
+                  </div>
+				  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="newpass2">Re-enter Your New Password</label>
+                      <input type="password" id="newpass2" name="newpass2" class="form-control ">
+                    </div>
+                  </div>
+                  -->
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <input type="submit" value="Reset Password" class="btn btn-primary">
+                    </div>
+                  </div>
+                </form>
+            
+          </div>
+        </div>
+    </div>
+
+
+{% endblock %}
